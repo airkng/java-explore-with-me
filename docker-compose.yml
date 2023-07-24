@@ -1,7 +1,7 @@
 version: '3.1'
 services:
   stats-server:
-    build: ./stats-service/server
+    build: ./statistics-service/server
     image: stats-server_image
     container_name: stats-server_container
     ports:
@@ -30,7 +30,7 @@ services:
       - "/etc/timezone:/etc/timezone:ro"
 
   ewm-service:
-    build: ./ewm-main-service
+    build: ./ewm-main-service/
     image: main-service_image
     container_name: main-service_container
     ports:
