@@ -1,10 +1,10 @@
 package ru.practicum.service;
 
 import org.springframework.http.ResponseEntity;
-import ru.practicum.model.EndPointHit;
-import ru.practicum.model.ViewStats;
 import ru.practicum.dto.EndPointHitDto;
 import ru.practicum.dto.ViewStatsHitDto;
+import ru.practicum.model.EndPointHit;
+import ru.practicum.model.ViewStats;
 
 import java.util.List;
 

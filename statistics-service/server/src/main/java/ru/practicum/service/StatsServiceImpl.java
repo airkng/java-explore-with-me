@@ -3,12 +3,12 @@ package ru.practicum.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import ru.practicum.dto.EndPointHitDto;
+import ru.practicum.dto.ViewStatsHitDto;
 import ru.practicum.mapper.StatsMapper;
 import ru.practicum.model.EndPointHit;
 import ru.practicum.model.ViewStats;
 import ru.practicum.repository.StatsRepository;
-import ru.practicum.dto.EndPointHitDto;
-import ru.practicum.dto.ViewStatsHitDto;
 
 import java.net.URI;
 import java.util.List;

@@ -2,8 +2,8 @@ package ru.practicum.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import ru.practicum.model.EndPointHit;
 import ru.practicum.dto.ViewStatsHitDto;
+import ru.practicum.model.EndPointHit;
 
 import java.time.LocalDateTime;
 import java.util.List;
