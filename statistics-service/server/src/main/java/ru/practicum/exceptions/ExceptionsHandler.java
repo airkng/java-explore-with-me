@@ -1,4 +1,4 @@
-package practicum.exceptions;
+package ru.practicum.exceptions;
 
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;

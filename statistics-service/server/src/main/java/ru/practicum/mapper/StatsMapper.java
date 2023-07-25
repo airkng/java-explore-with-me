@@ -1,9 +1,9 @@
-package practicum.mapper;
+package ru.practicum.mapper;
 
 import org.springframework.stereotype.Component;
 import ru.practicum.dto.EndPointHitDto;
-import practicum.model.EndPointHit;
-import practicum.model.ViewStats;
+import ru.practicum.model.EndPointHit;
+import ru.practicum.model.ViewStats;
 
 import java.time.LocalDateTime;
 import java.util.List;

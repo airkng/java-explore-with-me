@@ -3,7 +3,7 @@ services:
   stats-server:
     build: ./statistics-service/server
     image: stats-server_image
-    container_name: stats-server_container
+    container_name: statistics-service
     ports:
       - "9090:9090"
     depends_on:
@@ -17,7 +17,7 @@ services:
 
   stats-db:
     image: postgres:14-alpine
-    container_name: stats_db_container
+    container_name: emw-main-service
     ports:
       - "6541:5432"
     volumes:
@@ -50,7 +50,7 @@ services:
     image: postgres:14-alpine
     container_name: main-service_db_container
     ports:
-      - "6541:5432"
+      - "6542:5432"
     volumes:
       - /var/lib/postgresql/data/
     environment:

@@ -1,11 +1,12 @@
-package practicum.service;
+package ru.practicum.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import practicum.mapper.StatsMapper;
-import practicum.model.ViewStats;
-import practicum.repository.StatsRepository;
+import ru.practicum.mapper.StatsMapper;
+import ru.practicum.model.EndPointHit;
+import ru.practicum.model.ViewStats;
+import ru.practicum.repository.StatsRepository;
 import ru.practicum.dto.EndPointHitDto;
 import ru.practicum.dto.ViewStatsHitDto;
 
@@ -19,7 +20,7 @@ public class StatsServiceImpl implements StatsService {
     private final StatsMapper mapper;
 
     @Override
-    public List<ViewStatsHitDto> get(ViewStats viewStatsHitDto) {
+    public ResponseEntity<List<ViewStatsHitDto>> get(ViewStats viewStatsHitDto) {
         checkDateTime(viewStatsHitDto);
         List<ViewStatsHitDto> views;
         if (viewStatsHitDto.getUris() == null || viewStatsHitDto.getUris().isEmpty()) {
@@ -38,7 +39,7 @@ public class StatsServiceImpl implements StatsService {
             }
 
         }
-        return views;
+        return ResponseEntity.ok().body(views);
     }
 
     private void checkDateTime(ViewStats viewStatsHitDto) {
@@ -48,7 +49,7 @@ public class StatsServiceImpl implements StatsService {
     }
 
     @Override
-    public ResponseEntity<Object> add(EndPointHitDto endPointHitDto) {
+    public ResponseEntity<EndPointHit> add(EndPointHitDto endPointHitDto) {
         var endpointHit = mapper.toEndpointHit(endPointHitDto);
         repository.save(endpointHit);
         return ResponseEntity.created(URI.create("")).body(endpointHit);
