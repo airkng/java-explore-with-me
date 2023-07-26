@@ -9,8 +9,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder(toBuilder = true)
+//Возвращается при запросе GET /stats
 public class ViewStatsHitDto {
-    //Возвращается при запросе GET /stats
+
     private String app; // ex. ewm-main-service
 
     private String uri; // ex. /events/1

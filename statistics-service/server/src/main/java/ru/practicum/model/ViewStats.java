@@ -13,8 +13,9 @@ import java.util.List;
 @NoArgsConstructor
 @Builder(toBuilder = true)
 @Data
+//конвертация в контроллере из входящих данных
 public class ViewStats {
-    //конвертация в контроллере из входящих данных
+
     @NotNull
     private LocalDateTime start;
     @NotNull

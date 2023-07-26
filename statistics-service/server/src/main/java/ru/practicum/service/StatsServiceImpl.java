@@ -21,10 +21,9 @@ public class StatsServiceImpl implements StatsService {
 
     @Override
     public ResponseEntity<List<ViewStatsHitDto>> get(ViewStats viewStatsHitDto) {
-        checkDateTime(viewStatsHitDto);
+        validateHitDateTime(viewStatsHitDto);
         List<ViewStatsHitDto> views;
         if (viewStatsHitDto.getUris() == null || viewStatsHitDto.getUris().isEmpty()) {
-            //
             if (viewStatsHitDto.getUnique()) {
                 views = repository.findAllByTimeAndUnique(viewStatsHitDto.getStart(), viewStatsHitDto.getEnd());
             } else {
@@ -42,7 +41,7 @@ public class StatsServiceImpl implements StatsService {
         return ResponseEntity.ok().body(views);
     }
 
-    private void checkDateTime(ViewStats viewStatsHitDto) {
+    private void validateHitDateTime(ViewStats viewStatsHitDto) {
         if (viewStatsHitDto.getStart().isAfter(viewStatsHitDto.getEnd())) {
             throw new IllegalArgumentException("Start datetime is after then end datetime");
         }

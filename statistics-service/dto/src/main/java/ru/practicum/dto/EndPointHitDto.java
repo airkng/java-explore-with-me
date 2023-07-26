@@ -13,8 +13,9 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder(toBuilder = true)
+//POST данные приходят в такой вид
 public class EndPointHitDto {
-    //POST данные приходят в такой вид
+
     @NotNull
     private String app;
 
