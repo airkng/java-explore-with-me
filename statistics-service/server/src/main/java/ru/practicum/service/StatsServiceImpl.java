@@ -3,8 +3,8 @@ package ru.practicum.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import ru.practicum.dto.EndPointHitDto;
-import ru.practicum.dto.ViewStatsHitDto;
+import ru.practicum.dto.EndPointRequestDto;
+import ru.practicum.dto.ViewStatsResponseDto;
 import ru.practicum.mapper.StatsMapper;
 import ru.practicum.model.EndPointHit;
 import ru.practicum.model.ViewStats;
@@ -20,9 +20,9 @@ public class StatsServiceImpl implements StatsService {
     private final StatsMapper mapper;
 
     @Override
-    public ResponseEntity<List<ViewStatsHitDto>> get(ViewStats viewStatsHitDto) {
+    public ResponseEntity<List<ViewStatsResponseDto>> get(ViewStats viewStatsHitDto) {
         validateHitDateTime(viewStatsHitDto);
-        List<ViewStatsHitDto> views;
+        List<ViewStatsResponseDto> views;
         if (viewStatsHitDto.getUris() == null || viewStatsHitDto.getUris().isEmpty()) {
             if (viewStatsHitDto.getUnique()) {
                 views = repository.findAllByTimeAndUnique(viewStatsHitDto.getStart(), viewStatsHitDto.getEnd());
@@ -48,8 +48,8 @@ public class StatsServiceImpl implements StatsService {
     }
 
     @Override
-    public ResponseEntity<EndPointHit> add(EndPointHitDto endPointHitDto) {
-        var endpointHit = mapper.toEndpointHit(endPointHitDto);
+    public ResponseEntity<EndPointHit> add(EndPointRequestDto endPointRequestDto) {
+        var endpointHit = mapper.toEndpointHit(endPointRequestDto);
         repository.save(endpointHit);
         return ResponseEntity.created(URI.create("")).body(endpointHit);
     }

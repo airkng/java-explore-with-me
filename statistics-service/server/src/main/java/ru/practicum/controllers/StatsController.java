@@ -7,8 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import ru.practicum.dto.EndPointHitDto;
-import ru.practicum.dto.ViewStatsHitDto;
+import ru.practicum.dto.EndPointRequestDto;
+import ru.practicum.dto.ViewStatsResponseDto;
 import ru.practicum.mapper.StatsMapper;
 import ru.practicum.model.EndPointHit;
 import ru.practicum.service.StatsService;
@@ -28,11 +28,11 @@ public class StatsController {
 
     @GetMapping("/stats")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<List<ViewStatsHitDto>> get(@RequestParam(value = "start", required = true) @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") @NotNull final LocalDateTime start,
-                                                     @RequestParam(value = "end", required = true) @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") @NotNull final LocalDateTime end,
-                                                     @RequestParam(value = "uris", required = false) final List<String> uris,
-                                                     @RequestParam(value = "unique", required = false, defaultValue = "false") final Boolean unique,
-                                                     HttpServletRequest request) {
+    public ResponseEntity<List<ViewStatsResponseDto>> get(@RequestParam(value = "start", required = true) @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") @NotNull final LocalDateTime start,
+                                                          @RequestParam(value = "end", required = true) @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") @NotNull final LocalDateTime end,
+                                                          @RequestParam(value = "uris", required = false) final List<String> uris,
+                                                          @RequestParam(value = "unique", required = false, defaultValue = "false") final Boolean unique,
+                                                          HttpServletRequest request) {
 
         log.info("Запрос на получение статистики(stats) ");
         var viewStats = mapper.toViewStats(start, end, uris, unique);
@@ -41,8 +41,8 @@ public class StatsController {
 
     @PostMapping("/hit")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<EndPointHit> addHit(@RequestBody EndPointHitDto endPointHitDto) {
-        return service.add(endPointHitDto);
+    public ResponseEntity<EndPointHit> addHit(@RequestBody EndPointRequestDto endPointRequestDto) {
+        return service.add(endPointRequestDto);
     }
 
 }

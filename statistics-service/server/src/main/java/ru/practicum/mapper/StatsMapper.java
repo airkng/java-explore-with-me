@@ -1,7 +1,7 @@
 package ru.practicum.mapper;
 
 import org.springframework.stereotype.Component;
-import ru.practicum.dto.EndPointHitDto;
+import ru.practicum.dto.EndPointRequestDto;
 import ru.practicum.model.EndPointHit;
 import ru.practicum.model.ViewStats;
 
@@ -20,12 +20,12 @@ public class StatsMapper {
 
     }
 
-    public EndPointHit toEndpointHit(EndPointHitDto endPointHitDto) {
+    public EndPointHit toEndpointHit(EndPointRequestDto endPointRequestDto) {
         return EndPointHit.builder()
-                .app(endPointHitDto.getApp())
-                .ip(endPointHitDto.getIp())
-                .uri(endPointHitDto.getUri())
-                .timestamp(endPointHitDto.getTimestamp())
+                .app(endPointRequestDto.getApp())
+                .ip(endPointRequestDto.getIp())
+                .uri(endPointRequestDto.getUri())
+                .timestamp(endPointRequestDto.getTimestamp())
                 .build();
     }
 }
