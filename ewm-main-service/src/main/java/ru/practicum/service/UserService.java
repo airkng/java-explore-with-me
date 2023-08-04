@@ -1,8 +1,7 @@
 package ru.practicum.service;
 
-import org.springframework.data.domain.Page;
-import ru.practicum.dto.UserRequestDto;
-import ru.practicum.dto.UserResponseDto;
+import ru.practicum.dto.request.UserRequestDto;
+import ru.practicum.dto.response.UserResponseDto;
 
 import java.util.List;
 
