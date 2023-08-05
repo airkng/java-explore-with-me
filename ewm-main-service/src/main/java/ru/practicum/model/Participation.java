@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.practicum.model.enums.ParticipationRequestState;
+import ru.practicum.model.enums.ParticipationState;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -16,22 +16,23 @@ import java.time.LocalDateTime;
 @Data
 @Entity
 @Table(name = "requests")
-public class ParticipationRequest {
+public class Participation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "request_id")
     private Long id;
 
     private LocalDateTime created;
 
-    @OneToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "event_id")
     private Event event;
 
-    @OneToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "requester_id")
     private User requester;
 
     @Enumerated(EnumType.STRING)
-    private ParticipationRequestState status;
+    private ParticipationState status;
 
 }

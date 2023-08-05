@@ -19,7 +19,12 @@ public class Compilation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "compilation_id")
     private Long id;
-    //TODO: подумать над связью между
+
+    @ManyToMany
+    @JoinTable(name = "compilation_events",
+            joinColumns = @JoinColumn(name = "compilation_id"),
+            inverseJoinColumns = @JoinColumn(name = "event_id")
+    )
     Set<Event> events;
 
     @Column(name = "pinned")

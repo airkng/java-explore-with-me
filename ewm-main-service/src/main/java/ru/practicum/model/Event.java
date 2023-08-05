@@ -16,45 +16,60 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "events")
 public class Event {
-    private String annotation;
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    private Category category;
-
-    @Column(name = "confirmed_requests")
-    private Long confirmedRequests; //кол-во одобренных заявок
-    @Column(name = "created_on")
-    private LocalDateTime createdOn; //Creation time
-    private String description;
-    @Column(name = "event_date")
-    private LocalDateTime eventDate;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "event_id")
     private Long id;
-    @ManyToOne
-    @JoinColumn(name = "initiator_id")
-    private User initiator;
-    @OneToOne
-    @JoinColumn(name = "location_id")
-    private Location location;
 
-    private Boolean paid;
     @Column(name = "participant_limit")
     private Long participantLimit;
 
-    @Column(name = "published_on")
-    private LocalDateTime publishedOn;
+    @Column(name = "confirmed_requests")
+    private Long confirmedRequests;
+
+    @Column(name = "views")
+    private Long views;
+
+    @Column(name = "annotation")
+    private String annotation;
+
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "title")
+    private String title;
+
+    @Column(name = "paid")
+    private Boolean paid;
 
     @Column(name = "request_moderation")
     private Boolean requestModeration;
 
+    @Column(name = "created_on")
+    private LocalDateTime createdOn;
+
+    @Column(name = "event_date")
+    private LocalDateTime eventDate;
+
+    @Column(name = "published_on")
+    private LocalDateTime publishedOn;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
+
+    @AttributeOverrides(value = {
+            @AttributeOverride(name = "lat", column = @Column(name = "lat")),
+            @AttributeOverride(name = "lon", column = @Column(name = "lon"))
+    })
+    private Location location;
+
+    @ManyToOne
+    @JoinColumn(name = "initiator_id")
+    private User initiator;
+
+    @Column(name = "state")
     @Enumerated(EnumType.STRING)
     private EventState state;
 
-    @Column(name = "title")
-    private String title;
-    @Transient
-    //TODO: либо все таки засунуть в бд
-    private Long views;
 }
