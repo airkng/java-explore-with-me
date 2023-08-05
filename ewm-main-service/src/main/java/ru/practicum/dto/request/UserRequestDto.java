@@ -12,7 +12,6 @@ import javax.validation.constraints.*;
 @Builder(toBuilder = true)
 @Data
 public class UserRequestDto {
-
     @NotNull
     @NotBlank
     @Email

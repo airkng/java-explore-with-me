@@ -10,23 +10,26 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Set;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder(toBuilder = true)
-@Data
-
 /**
- * Дто для создания подборки событий. Применяется при POST/PATCH-запросах в
- * контроллере CompilationController на эндпоинтах /admin/compilations/..
+ * DTO для создания подборки событий. Применяется при POST/PATCH-запросах в
+ * контроллере AdminCompilationController на эндпоинтах /admin/compilations/..
  * events - может быть пустым
  * pinned - закреплена ли запись
  * title - уникальное описание подборки
  */
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder(toBuilder = true)
+@Data
 public class CompilationRequestDto {
     private Set<Long> events;
 
     private Boolean pinned;
 
+    /**
+     * Описание подборки событий. Параметр должен быть уникальным. Валидация уникальности происходит на уровне
+     * сущности Compilation
+     */
     @NotNull
     @NotBlank
     @Size(min = 1, max = 50)

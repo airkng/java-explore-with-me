@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.practicum.model.enums.ParticipationRequestState;
+import ru.practicum.model.enums.ParticipationState;
 
 import java.time.LocalDateTime;
 
@@ -12,14 +12,11 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Builder(toBuilder = true)
 @Data
-/**
- * Дто возвращающее информацию о заявке пользователя на событие
- * Используется в PrivEventRequestController POST/GET/PATCH методах
- */
 public class ParticipationResponseDto {
+    //TODO: возможно будет нужна будет исправить формат вывода
     private LocalDateTime created;
     private Long event;
     private Long id;
     private Long requester;
-    private ParticipationRequestState status;
+    private ParticipationState status;
 }
