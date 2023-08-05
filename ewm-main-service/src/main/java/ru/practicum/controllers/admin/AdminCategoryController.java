@@ -16,7 +16,7 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 @Validated
 @Slf4j
-public class CategoryController {
+public class AdminCategoryController {
     private final CategoryService service;
 
     @PostMapping
@@ -35,7 +35,7 @@ public class CategoryController {
 
     @PatchMapping("/{catId}")
     @ResponseStatus(HttpStatus.OK)
-    public CategoryResponseDto updateCategory(@PathVariable(value = "catId") final Long id,
+    public CategoryResponseDto updateCategory(@PathVariable(name = "catId") final Long id,
                                               @RequestBody @Valid final CategoryRequestDto categoryRequestDto) {
         log.info("изменение категории в контроллеер");
         return service.update(id, categoryRequestDto);

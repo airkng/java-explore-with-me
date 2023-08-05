@@ -2,11 +2,11 @@ package ru.practicum.controllers.pub;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Sort;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.dto.EventShortDto;
+import ru.practicum.model.enums.EventSort;
 import ru.practicum.service.EventService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,7 +30,7 @@ public class PubEventController {
                                                      @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") final LocalDateTime rangeStart,
                                                      @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") final LocalDateTime rangeEnd,
                                                      @RequestParam(required = false) final Boolean onlyAvailable,
-                                                     @RequestParam(required = false) final Sort sort,
+                                                     @RequestParam(required = false) final EventSort sort,
                                                      @RequestParam(defaultValue = "0") @PositiveOrZero final Integer from,
                                                      @RequestParam(defaultValue = "10") @Positive final Integer size,
                                                      final HttpServletRequest request) {

@@ -17,7 +17,7 @@ import javax.validation.Valid;
 @Slf4j
 @Validated
 @RequiredArgsConstructor
-public class CompilationController {
+public class AdminCompilationController {
     private final CompilationService service;
 
     @PostMapping

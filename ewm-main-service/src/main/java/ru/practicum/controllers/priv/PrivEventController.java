@@ -5,13 +5,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import ru.practicum.dto.EventShortDto;
 import ru.practicum.dto.EventUpdateDto;
 import ru.practicum.dto.request.EventRequestDto;
-import ru.practicum.dto.EventShortDto;
-import ru.practicum.dto.request.EventRequestStatusUpdateRequestDto;
-import ru.practicum.dto.response.EventRequestResponseDto;
+import ru.practicum.dto.request.ParticipationStatusUpdateRequestDto;
 import ru.practicum.dto.response.EventFullResponseDto;
 import ru.practicum.dto.response.ParticipationResponseDto;
+import ru.practicum.dto.response.ParticipationStatusUpdateResponseDto;
 import ru.practicum.service.EventRequestService;
 import ru.practicum.service.EventService;
 
@@ -35,7 +35,7 @@ public class PrivEventController {
                                       @RequestParam(name = "from", defaultValue = "0", required = false) @PositiveOrZero final Integer from,
                                       @RequestParam(name = "size", defaultValue = "10", required = false) @Positive final Integer size) {
         log.info("Запрос на получение всех событий. Возвращается лист ShortEvent");
-        return service.getAll(userId, from, size);
+        return service.getAllUserId(userId, from, size);
     }
 
     @GetMapping("/{eventId}")
@@ -48,7 +48,7 @@ public class PrivEventController {
 
     @GetMapping("/{eventId}/requests")
     @ResponseStatus(HttpStatus.OK)
-    public List<EventRequestResponseDto> getAllUserParticipationRequests(@PathVariable(name = "userId") final Long userId,
+    public List<ParticipationResponseDto> getAllUserParticipationRequests(@PathVariable(name = "userId") final Long userId,
                                                                           @PathVariable(name = "eventId") final Long eventId) {
         log.info("Запрос на получение информации о запросах на участие в событии текущего пользователя");
         return requestService.getAllUserRequests(userId, eventId);
@@ -58,7 +58,7 @@ public class PrivEventController {
     @ResponseStatus(HttpStatus.CREATED)
     public EventFullResponseDto addEvent(@PathVariable(name = "userId") final Long userId,
                                          @RequestBody @Valid EventRequestDto eventRequestDto) {
-        log.info("Добавление события в кнотроллер PrivEventController");
+        log.info("Добавление события в контроллер PrivEventController");
         return service.add(eventRequestDto, userId);
     }
 
@@ -68,15 +68,15 @@ public class PrivEventController {
                                             @PathVariable(name = "eventId") final Long eventId,
                                             @RequestBody @Valid final EventUpdateDto updateDto) {
         log.info("обновление события в private контроллере");
-        return service.update(eventId, updateDto, userId);
+        return service.updateByUser(eventId, updateDto, userId);
     }
 
     @PatchMapping("/{eventId}/requests")
     @ResponseStatus(HttpStatus.OK)
-    public EventRequestResponseDto updateEventRequestStatus(@RequestBody final EventRequestStatusUpdateRequestDto requestDto,
-                                                            @PathVariable final Long eventId,
-                                                            @PathVariable final Long userId) {
+    public ParticipationStatusUpdateResponseDto updateEventRequestStatus(@RequestBody final ParticipationStatusUpdateRequestDto requestDto,
+                                                                         @PathVariable final Long eventId,
+                                                                         @PathVariable final Long userId) {
         log.info("Изменение статуса(подтверждена/отклонена) на участие в событии текущего пользователя в контроллере PrivEventController");
-        return service.updateRequestStatus(eventId, requestDto, userId);
+        return requestService.updateRequestStatus(eventId, requestDto, userId);
     }
 }
