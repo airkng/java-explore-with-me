@@ -7,8 +7,6 @@ import ru.practicum.dto.request.EventRequestDto;
 import ru.practicum.dto.response.EventFullResponseDto;
 import ru.practicum.model.Event;
 
-import java.time.LocalDateTime;
-
 @Component
 @RequiredArgsConstructor
 public class EventMapper {

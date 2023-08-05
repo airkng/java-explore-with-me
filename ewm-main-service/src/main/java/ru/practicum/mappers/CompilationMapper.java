@@ -2,8 +2,8 @@ package ru.practicum.mappers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import ru.practicum.dto.CompilationUpdateDto;
 import ru.practicum.dto.request.CompilationRequestDto;
+import ru.practicum.dto.request.CompilationUpdateDto;
 import ru.practicum.dto.response.CompilationResponseDto;
 import ru.practicum.model.Compilation;
 
