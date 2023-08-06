@@ -29,19 +29,22 @@ public class EventMapper {
 
     public EventFullResponseDto toEventResponseDto(Event event) {
         return EventFullResponseDto.builder()
-                .annotation(event.getAnnotation())
-                .category(categoryMapper.toCategoryResponseDto(event.getCategory()))
-                .createdOn(event.getCreatedOn())
-                .description(event.getDescription())
-                .eventDate(event.getEventDate())
                 .id(event.getId())
-                .initiator(userMapper.toShortUser(event.getInitiator()))
-                .location(event.getLocation())
                 .participantLimit(event.getParticipantLimit())
-                .publishedOn(event.getPublishedOn())
-                .requestModeration(event.getRequestModeration())
-                .state(event.getState())
+                .confirmedRequests(event.getConfirmedRequests())
                 .views(event.getViews())
+                .annotation(event.getAnnotation())
+                .description(event.getDescription())
+                .title(event.getTitle())
+                .paid(event.getPaid())
+                .requestModeration(event.getRequestModeration())
+                .createdOn(event.getCreatedOn())
+                .eventDate(event.getEventDate())
+                .publishedOn(event.getPublishedOn())
+                .category(categoryMapper.toCategoryResponseDto(event.getCategory()))
+                .location(event.getLocation())
+                .initiator(userMapper.toShortUser(event.getInitiator()))
+                .state(event.getState())
                 .build();
     }
 

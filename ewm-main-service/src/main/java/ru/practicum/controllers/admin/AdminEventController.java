@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import ru.practicum.dto.EventUpdateDto;
+import ru.practicum.dto.request.EventUpdateDto;
 import ru.practicum.dto.response.EventFullResponseDto;
 import ru.practicum.model.enums.EventState;
 import ru.practicum.service.EventService;

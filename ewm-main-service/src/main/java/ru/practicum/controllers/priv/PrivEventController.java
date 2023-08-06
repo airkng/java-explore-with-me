@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.dto.EventShortDto;
-import ru.practicum.dto.EventUpdateDto;
+import ru.practicum.dto.request.EventUpdateDto;
 import ru.practicum.dto.request.EventRequestDto;
 import ru.practicum.dto.request.ParticipationStatusUpdateRequestDto;
 import ru.practicum.dto.response.EventFullResponseDto;

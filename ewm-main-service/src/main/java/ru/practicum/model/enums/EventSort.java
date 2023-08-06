@@ -1,4 +1,6 @@
 package ru.practicum.model.enums;
 
-public class EventSort {
+public enum EventSort {
+    EVENT_DATE,
+    VIEWS;
 }

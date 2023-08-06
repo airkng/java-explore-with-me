@@ -18,11 +18,15 @@ import java.time.LocalDateTime;
 public class EventFullResponseDto {
     private Long id;
     private Long participantLimit;
+    private Long confirmedRequests;
     private Long views;
-    private Boolean requestModeration;
 
     private String annotation;
     private String description;
+    private String title;
+
+    private Boolean paid;
+    private Boolean requestModeration;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createdOn;
@@ -32,9 +36,9 @@ public class EventFullResponseDto {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime publishedOn;
 
-    private UserShortDto initiator;
     private CategoryResponseDto category;
     private Location location;
+    private UserShortDto initiator;
     private EventState state;
 
 }
