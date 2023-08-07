@@ -13,6 +13,6 @@ import javax.persistence.Embeddable;
 @Data
 @Embeddable
 public class Location {
-    private Double lat;
-    private Double lon;
+    private Double lat = 0d;
+    private Double lon = 0d;
 }

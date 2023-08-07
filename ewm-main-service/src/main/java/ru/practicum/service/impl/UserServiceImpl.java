@@ -1,8 +1,9 @@
-package ru.practicum.service;
+package ru.practicum.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -12,7 +13,9 @@ import ru.practicum.dto.response.UserResponseDto;
 import ru.practicum.exceptions.NotFoundException;
 import ru.practicum.exceptions.UniqueViolationException;
 import ru.practicum.mappers.UserMapper;
+import ru.practicum.model.User;
 import ru.practicum.repository.UserRepository;
+import ru.practicum.service.UserService;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,7 +23,8 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Service
 @Slf4j
-public class UserServiceImpl implements UserService {
+public class
+UserServiceImpl implements UserService {
     private final UserRepository repository;
     private final UserMapper mapper;
 
@@ -28,19 +32,18 @@ public class UserServiceImpl implements UserService {
     public List<UserResponseDto> get(List<Long> ids, Integer from, Integer size) {
         log.info("Получение пользователей в сервисная логика");
         Pageable page = PageRequest.of(from / size, size, Sort.by("id").ascending());
-        List<UserResponseDto> userResponseDtoPage;
+        Page<User> userPage;
         if (ids == null || ids.isEmpty()) {
-            userResponseDtoPage = repository.findAll(page)
-                    .stream()
-                    .map(mapper::toUserResponseDto)
-                    .collect(Collectors.toList());
+            userPage = repository.findAll(page);
         } else {
-            var userPage = repository.findAllByIdIn(ids, page);
-            userResponseDtoPage = userPage.stream()
-                    .map(mapper::toUserResponseDto)
-                    .collect(Collectors.toList());
+            userPage = repository.findAllByIdIn(ids, page);
         }
-        return userResponseDtoPage;
+        if (userPage.isEmpty()) {
+            return List.of();
+        }
+        return userPage.stream()
+                .map(mapper::toUserResponseDto)
+                .collect(Collectors.toList());
     }
 
     @Override

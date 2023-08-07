@@ -22,6 +22,7 @@ public class Participation {
     @Column(name = "request_id")
     private Long id;
 
+    @Column(name = "created")
     private LocalDateTime created;
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -34,5 +35,4 @@ public class Participation {
 
     @Enumerated(EnumType.STRING)
     private ParticipationState status;
-
 }
