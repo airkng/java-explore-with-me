@@ -10,7 +10,7 @@ import ru.practicum.model.enums.ParticipationState;
 import java.time.LocalDateTime;
 
 @Component
-public class ParticipationRequestMapper {
+public class ParticipationMapper {
     public ParticipationResponseDto toParticipationResponseDto(Participation participation) {
         return ParticipationResponseDto.builder()
                 .requester(participation.getRequester().getId())
@@ -21,7 +21,7 @@ public class ParticipationRequestMapper {
                 .build();
     }
 
-    public Participation toParticipationRequest(Event event, User user) {
+    public Participation toParticipation(Event event, User user) {
         return Participation.builder()
                 .requester(user)
                 .event(event)

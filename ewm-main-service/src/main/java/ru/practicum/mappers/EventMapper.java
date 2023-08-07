@@ -50,13 +50,14 @@ public class EventMapper {
 
     public Event toEvent(EventRequestDto eventRequestDto) {
         return Event.builder()
-                .eventDate(eventRequestDto.getEventDate())
                 .annotation(eventRequestDto.getAnnotation())
+                .title(eventRequestDto.getTitle())
                 .description(eventRequestDto.getDescription())
+                .location(eventRequestDto.getLocation())
+                .eventDate(eventRequestDto.getEventDate())
+                .participantLimit(eventRequestDto.getParticipantLimit())
                 .paid(eventRequestDto.getPaid())
                 .requestModeration(eventRequestDto.getRequestModeration())
-                .participantLimit(eventRequestDto.getParticipantLimit())
-                .title(eventRequestDto.getTitle())
                 .build();
     }
 }
