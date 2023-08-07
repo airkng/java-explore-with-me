@@ -9,6 +9,7 @@ import ru.practicum.dto.request.EventUpdateDto;
 import ru.practicum.dto.response.EventFullResponseDto;
 import ru.practicum.model.enums.EventState;
 import ru.practicum.service.EventService;
+import ru.practicum.utils.AdminSearchEventParams;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
@@ -33,8 +34,18 @@ public class AdminEventController {
                                                    @RequestParam(required = false, defaultValue = "0") final @PositiveOrZero Integer from,
                                                    @RequestParam(required = false, defaultValue = "10") final @Positive Integer size
     ) {
+        var param = AdminSearchEventParams.builder()
+                .rangeStart(rangeStart)
+                .rangeEnd(rangeEnd)
+                .from(from)
+                .size(size)
+                .categories(categories)
+                .states(states)
+                .users(users)
+                .build();
+
         log.info("Получение всех событий с заданными параметрами в контроллере EventController");
-        return service.getAllFullEvents(users, states, categories, rangeStart, rangeEnd, from, size);
+        return service.getAllFullEvents(param);
     }
 
     @PatchMapping("/{eventId}")

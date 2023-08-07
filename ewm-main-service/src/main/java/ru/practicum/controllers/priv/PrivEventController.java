@@ -6,8 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.dto.EventShortDto;
-import ru.practicum.dto.request.EventUpdateDto;
 import ru.practicum.dto.request.EventRequestDto;
+import ru.practicum.dto.request.EventUpdateDto;
 import ru.practicum.dto.request.ParticipationStatusUpdateRequestDto;
 import ru.practicum.dto.response.EventFullResponseDto;
 import ru.practicum.dto.response.ParticipationResponseDto;
@@ -32,8 +32,8 @@ public class PrivEventController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<EventShortDto> getAllUserEvents(@PathVariable(name = "userId") final Long userId,
-                                      @RequestParam(name = "from", defaultValue = "0", required = false) @PositiveOrZero final Integer from,
-                                      @RequestParam(name = "size", defaultValue = "10", required = false) @Positive final Integer size) {
+                                                @RequestParam(name = "from", defaultValue = "0", required = false) @PositiveOrZero final Integer from,
+                                                @RequestParam(name = "size", defaultValue = "10", required = false) @Positive final Integer size) {
         log.info("Запрос на получение всех событий. Возвращается лист ShortEvent");
         return service.getAllUserId(userId, from, size);
     }

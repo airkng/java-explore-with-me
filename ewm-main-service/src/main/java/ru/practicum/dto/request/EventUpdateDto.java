@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 import ru.practicum.model.Location;
 import ru.practicum.model.enums.EventStateAction;
+import ru.practicum.utils.CorrectDateNullable;
 
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
@@ -15,7 +16,6 @@ import java.time.LocalDateTime;
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class EventUpdateDto {
-    //TODO:возожно переделать
     @Size(min = 20, max = 2000)
     private String annotation;
 
@@ -25,6 +25,7 @@ public class EventUpdateDto {
     private String description;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @CorrectDateNullable
     private LocalDateTime eventDate;
 
     private Location location;

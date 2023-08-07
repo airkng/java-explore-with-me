@@ -2,7 +2,7 @@ package ru.practicum.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
-import ru.practicum.exceptions.CorrectDate;
+import ru.practicum.utils.CorrectDateNullable;
 import ru.practicum.model.Location;
 
 import javax.validation.constraints.NotBlank;
@@ -13,13 +13,14 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder(toBuilder = true)
-@Data
+@Getter
+@Setter
 public class EventRequestDto {
-    @NotBlank //1
+    @NotBlank
     @Size(min = 20, max = 2000)
     private String annotation;
 
-    @NotBlank //2
+    @NotBlank
     @Size(min = 3, max = 120)
     private String title;
 
@@ -33,18 +34,15 @@ public class EventRequestDto {
     @NotNull
     private Location location;
 
+    @NotNull
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
-    @CorrectDate
-    //TODO:мб убрать CorrectDate, вместо этого добавить проверку в сервисе
+    @CorrectDateNullable
     private LocalDateTime eventDate;
 
-    private Long participantLimit;
+    private Long participantLimit = 0L;
 
-    private Boolean paid;
+    private Boolean paid = false;
 
-    private Boolean requestModeration;
-
-
-
+    private Boolean requestModeration = true;
 
 }

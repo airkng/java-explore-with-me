@@ -8,8 +8,6 @@ import lombok.*;
 @Data
 public class UserResponseDto {
     private String email;
-
     private Long id;
-
     private String name;
 }
