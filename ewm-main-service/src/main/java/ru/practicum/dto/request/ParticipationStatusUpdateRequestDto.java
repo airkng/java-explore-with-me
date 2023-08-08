@@ -13,6 +13,6 @@ import java.util.List;
 @Builder(toBuilder = true)
 @Data
 public class ParticipationStatusUpdateRequestDto {
-    List<Long> requestIds;
-    ParticipationState status;
+    private List<Long> requestIds;
+    private ParticipationState status;
 }

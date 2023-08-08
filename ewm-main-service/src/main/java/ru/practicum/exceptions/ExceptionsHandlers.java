@@ -12,37 +12,37 @@ public class ExceptionsHandlers {
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.CONFLICT)
-    public ExceptionEntity handleConstraintViolationException(ConstraintViolationException e) {
-        return new ExceptionEntity(e.getMessage(), e.getMessage());
+    public ExceptionDto handleConstraintViolationException(ConstraintViolationException e) {
+        return new ExceptionDto(e.getMessage(), e.getMessage());
     }
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.CONFLICT)
-    public ExceptionEntity handleConflictException(ConflictException e) {
-        return new ExceptionEntity(e.getMessage(), e.getMessage());
+    public ExceptionDto handleConflictException(ConflictException e) {
+        return new ExceptionDto(e.getMessage(), e.getMessage());
     }
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.CONFLICT)
-    public ExceptionEntity handleAlreadyExistsException(AlreadyExistsException e) {
-        return new ExceptionEntity(e.getMessage(), e.getMessage());
+    public ExceptionDto handleAlreadyExistsException(AlreadyExistsException e) {
+        return new ExceptionDto(e.getMessage(), e.getMessage());
     }
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.CONFLICT)
-    public ExceptionEntity handleUniqueViolationException(UniqueViolationException e) {
-        return new ExceptionEntity(e.getMessage(), e.getMessage());
+    public ExceptionDto handleUniqueViolationException(UniqueViolationException e) {
+        return new ExceptionDto(e.getMessage(), e.getMessage());
     }
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ExceptionEntity handleNotFoundException(NotFoundException e) {
-        return new ExceptionEntity(e.getMessage(), e.getMessage());
+    public ExceptionDto handleNotFoundException(NotFoundException e) {
+        return new ExceptionDto(e.getMessage(), e.getMessage());
     }
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ExceptionEntity handleBadRequestException(BadRequestException e) {
-        return new ExceptionEntity(e.getMessage(), e.getMessage());
+    public ExceptionDto handleBadRequestException(BadRequestException e) {
+        return new ExceptionDto(e.getMessage(), e.getMessage());
     }
 }

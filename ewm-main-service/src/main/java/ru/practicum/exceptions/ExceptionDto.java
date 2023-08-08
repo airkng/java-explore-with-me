@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public class ExceptionEntity {
+public class ExceptionDto {
     private String reason;
     private String message;
 }
