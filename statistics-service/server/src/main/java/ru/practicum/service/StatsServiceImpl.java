@@ -24,6 +24,9 @@ public class StatsServiceImpl implements StatsService {
     @Override
     public ResponseEntity<List<ViewStatsResponseDto>> get(ViewStats viewStatsHitDto) {
         validateHitDateTime(viewStatsHitDto);
+        if (viewStatsHitDto.getStart().isAfter(viewStatsHitDto.getEnd())) {
+            throw new BadRequestException("Start datetime is after then end datetime");
+        }
         List<ViewStatsResponseDto> views;
         if (viewStatsHitDto.getUris() == null || viewStatsHitDto.getUris().isEmpty()) {
             if (viewStatsHitDto.getUnique()) {
