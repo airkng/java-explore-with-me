@@ -2,7 +2,10 @@ package ru.practicum.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import ru.practicum.model.Location;
 import ru.practicum.model.enums.EventStateAction;
 import ru.practicum.utils.CorrectDateNullable;

@@ -27,7 +27,6 @@ public class Event {
     @Column(name = "confirmed_requests")
     private Long confirmedRequests;
 
-    //@Column(name = "views")
     @Transient
     private Long views = 0L;
 
@@ -72,9 +71,4 @@ public class Event {
     @Column(name = "state")
     @Enumerated(EnumType.STRING)
     private EventState state;
-
-    public Event increaseViews() {
-        this.setViews(this.getViews() + 1);
-        return this;
-    }
 }

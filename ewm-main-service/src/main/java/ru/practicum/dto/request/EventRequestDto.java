@@ -2,8 +2,8 @@ package ru.practicum.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
-import ru.practicum.utils.CorrectDateNullable;
 import ru.practicum.model.Location;
+import ru.practicum.utils.CorrectDateNullable;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;

@@ -6,10 +6,10 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.dto.EventShortDto;
+import ru.practicum.dto.request.search.PubSearchEventParams;
 import ru.practicum.dto.response.EventFullResponseDto;
 import ru.practicum.model.enums.EventSort;
 import ru.practicum.service.EventService;
-import ru.practicum.dto.request.search.PubSearchEventParams;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.Positive;
