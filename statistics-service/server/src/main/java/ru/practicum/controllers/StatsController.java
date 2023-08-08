@@ -11,6 +11,7 @@ import ru.practicum.dto.EndPointRequestDto;
 import ru.practicum.dto.ViewStatsResponseDto;
 import ru.practicum.mapper.StatsMapper;
 import ru.practicum.model.EndPointHit;
+import ru.practicum.model.ViewStats;
 import ru.practicum.service.StatsService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -34,7 +35,7 @@ public class StatsController {
                                                           @RequestParam(value = "unique", required = false, defaultValue = "false") final Boolean unique,
                                                           HttpServletRequest request) {
 
-        var viewStats = mapper.toViewStats(start, end, uris, unique);
+        ViewStats viewStats = mapper.toViewStats(start, end, uris, unique);
         log.info("Запрос на получение статистики(stats) {} ", viewStats);
         return service.get(viewStats);
     }

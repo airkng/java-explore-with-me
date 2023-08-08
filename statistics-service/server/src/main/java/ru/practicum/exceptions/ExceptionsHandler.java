@@ -10,4 +10,9 @@ public class ExceptionsHandler {
         return new ErrorResponse(e.getMessage(), e.getMessage());
     }
 
+    @ExceptionHandler
+    public ErrorResponse handleBadRequestException(BadRequestException e) {
+        return new ErrorResponse(e.getMessage(), e.getMessage());
+    }
+
 }

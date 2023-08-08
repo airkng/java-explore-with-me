@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import ru.practicum.dto.EndPointRequestDto;
 import ru.practicum.dto.ViewStatsResponseDto;
+import ru.practicum.exceptions.BadRequestException;
 import ru.practicum.mapper.StatsMapper;
 import ru.practicum.model.EndPointHit;
 import ru.practicum.model.ViewStats;
@@ -33,7 +34,7 @@ public class StatsServiceImpl implements StatsService {
 
         } else {
             List<String> uris = viewStatsHitDto.getUris().stream()
-                    .map(str -> str.replaceAll("\\[", "").replaceAll("\\]",""))
+                    .map(str -> str.replaceAll("\\[", "").replaceAll("\\]", ""))
                     .collect(Collectors.toList());
             if (viewStatsHitDto.getUnique()) {
                 views = repository.findByUrisAndTimeAndUnique(viewStatsHitDto.getStart(), viewStatsHitDto.getEnd(), uris);
@@ -47,7 +48,7 @@ public class StatsServiceImpl implements StatsService {
 
     private void validateHitDateTime(ViewStats viewStatsHitDto) {
         if (viewStatsHitDto.getStart().isAfter(viewStatsHitDto.getEnd())) {
-            throw new IllegalArgumentException("Start datetime is after then end datetime");
+            throw new BadRequestException("Start datetime is after then end datetime");
         }
     }
 
