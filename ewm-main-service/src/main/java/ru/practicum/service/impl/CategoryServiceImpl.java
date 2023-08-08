@@ -3,7 +3,6 @@ package ru.practicum.service.impl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ru.practicum.dto.request.CategoryRequestDto;
@@ -17,6 +16,7 @@ import ru.practicum.model.Event;
 import ru.practicum.repository.CategoryRepository;
 import ru.practicum.repository.EventRepository;
 import ru.practicum.service.CategoryService;
+import ru.practicum.utils.PageBuilder;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -81,8 +81,8 @@ public class CategoryServiceImpl implements CategoryService {
      * @param categoryRequestDto {@link CategoryRequestDto CategoryRequestDto.class} dto для создания/замены сущности
      * @return {@link CategoryResponseDto CategoryResponseDto.class} dto возвращаемой сущности
      * @throws UniqueViolationException если параметр name сущности уже существует
-     * @throws ConflictException если параметр name сущности {@link Category} связан с {@link Event}
-     * @throws NotFoundException если параметр id сущности {@link Category} не найден
+     * @throws ConflictException        если параметр name сущности {@link Category} связан с {@link Event}
+     * @throws NotFoundException        если параметр id сущности {@link Category} не найден
      */
     @Override
     public CategoryResponseDto update(final Long id, final CategoryRequestDto categoryRequestDto) {
@@ -115,7 +115,7 @@ public class CategoryServiceImpl implements CategoryService {
      */
     @Override
     public List<CategoryResponseDto> geAll(final Integer from, final Integer size) {
-        Pageable page = PageRequest.of(from / size, size);
+        Pageable page = PageBuilder.create(from, size);
         List<Category> categories = repository.findAll(page).getContent();
         if (categories.isEmpty()) {
             log.trace("Категории не найдены. Возвращен пустой список");

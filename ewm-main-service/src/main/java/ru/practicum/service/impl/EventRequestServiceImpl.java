@@ -112,7 +112,8 @@ public class EventRequestServiceImpl implements EventRequestService {
      * Присваивает запросу {@link Participation Participation.class} статус {@link ParticipationState ParticipationState.class} <b>CANCELED</b>
      * <p><b>Контроллер: {@link ru.practicum.controllers.priv.PrivEventRequestController PrivEventController.class}</b></p>
      * <p><b>Эндпоинт: /users/{userId}/{requestId}/cancel </b></p>
-     * @param userId уникальный идентификатор пользователя (id) {@link User User.class}
+     *
+     * @param userId    уникальный идентификатор пользователя (id) {@link User User.class}
      * @param requestId уникальный идентификатор запроса (id) {@link Participation Participation.class}
      * @return {@link ParticipationResponseDto ParticipationResponseDto.class}
      * @throws NotFoundException если запрос на участие с пользователем не был найден

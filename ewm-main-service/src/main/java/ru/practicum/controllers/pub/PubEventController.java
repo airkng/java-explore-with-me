@@ -9,7 +9,7 @@ import ru.practicum.dto.EventShortDto;
 import ru.practicum.dto.response.EventFullResponseDto;
 import ru.practicum.model.enums.EventSort;
 import ru.practicum.service.EventService;
-import ru.practicum.utils.PubSearchEventParams;
+import ru.practicum.dto.request.search.PubSearchEventParams;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.Positive;

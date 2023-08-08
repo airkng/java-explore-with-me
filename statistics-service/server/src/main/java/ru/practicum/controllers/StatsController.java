@@ -34,14 +34,15 @@ public class StatsController {
                                                           @RequestParam(value = "unique", required = false, defaultValue = "false") final Boolean unique,
                                                           HttpServletRequest request) {
 
-        log.info("Запрос на получение статистики(stats) ");
         var viewStats = mapper.toViewStats(start, end, uris, unique);
+        log.info("Запрос на получение статистики(stats) {} ", viewStats);
         return service.get(viewStats);
     }
 
     @PostMapping("/hit")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<EndPointHit> addHit(@RequestBody EndPointRequestDto endPointRequestDto) {
+        log.info("Создание новой статистики{}", endPointRequestDto);
         return service.add(endPointRequestDto);
     }
 

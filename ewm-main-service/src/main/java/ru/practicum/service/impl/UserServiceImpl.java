@@ -4,9 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import ru.practicum.dto.request.UserRequestDto;
 import ru.practicum.dto.response.UserResponseDto;
@@ -16,6 +14,7 @@ import ru.practicum.mappers.UserMapper;
 import ru.practicum.model.User;
 import ru.practicum.repository.UserRepository;
 import ru.practicum.service.UserService;
+import ru.practicum.utils.PageBuilder;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,7 +30,7 @@ UserServiceImpl implements UserService {
     @Override
     public List<UserResponseDto> get(List<Long> ids, Integer from, Integer size) {
         log.info("Получение пользователей в сервисная логика");
-        Pageable page = PageRequest.of(from / size, size, Sort.by("id").ascending());
+        Pageable page = PageBuilder.create(from, size);
         Page<User> userPage;
         if (ids == null || ids.isEmpty()) {
             userPage = repository.findAll(page);

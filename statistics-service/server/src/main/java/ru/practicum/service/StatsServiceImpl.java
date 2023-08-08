@@ -12,6 +12,7 @@ import ru.practicum.repository.StatsRepository;
 
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -31,10 +32,13 @@ public class StatsServiceImpl implements StatsService {
             }
 
         } else {
+            List<String> uris = viewStatsHitDto.getUris().stream()
+                    .map(str -> str.replaceAll("\\[", "").replaceAll("\\]",""))
+                    .collect(Collectors.toList());
             if (viewStatsHitDto.getUnique()) {
-                views = repository.findByUrisAndTimeAndUnique(viewStatsHitDto.getStart(), viewStatsHitDto.getEnd(), viewStatsHitDto.getUris());
+                views = repository.findByUrisAndTimeAndUnique(viewStatsHitDto.getStart(), viewStatsHitDto.getEnd(), uris);
             } else {
-                views = repository.findByUrisAndTime(viewStatsHitDto.getStart(), viewStatsHitDto.getEnd(), viewStatsHitDto.getUris());
+                views = repository.findByUrisAndTime(viewStatsHitDto.getStart(), viewStatsHitDto.getEnd(), uris);
             }
 
         }
