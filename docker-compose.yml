@@ -3,7 +3,7 @@ services:
   stats-server:
     build: ./statistics-service/server
     image: stats-server_image
-    container_name: statistics-service
+    container_name: ewm-statistics-service
     ports:
       - "9090:9090"
     depends_on:
@@ -17,7 +17,7 @@ services:
 
   stats-db:
     image: postgres:14-alpine
-    container_name: emw-main-service
+    container_name: stats-service-db
     ports:
       - "6541:5432"
     volumes:
@@ -32,7 +32,7 @@ services:
   ewm-service:
     build: ./ewm-main-service/
     image: main-service_image
-    container_name: main-service_container
+    container_name: ewm-main-service
     ports:
       - "8080:8080"
     depends_on:
@@ -47,7 +47,7 @@ services:
 
   ewm-db:
     image: postgres:14-alpine
-    container_name: main-service_db_container
+    container_name: main-service_db
     ports:
       - "6542:5432"
     volumes:
