@@ -99,7 +99,7 @@ public class CategoryServiceImpl implements CategoryService {
             oldCategory.setName(categoryRequestDto.getName());
             log.info("Сохранение в бд категории {}", oldCategory);
             return mapper.toCategoryResponseDto(repository.save(oldCategory));
-        } catch (DataIntegrityViolationException e) {
+        } catch (Exception e) {
             throw new UniqueViolationException("name of category already exists");
         }
     }
