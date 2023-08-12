@@ -16,14 +16,14 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 @Validated
-public class PubCommentController {
+public class PublicCommentController {
     private final CommentService service;
 
     @GetMapping
     public List<CommentResponseDto> getAllFromEvent(@PathVariable(value = "eventId") final Long eventId,
                                                          @RequestParam(value = "from", required = false, defaultValue = "0") @PositiveOrZero final Integer from,
                                                          @RequestParam(value = "size", required = false, defaultValue = "10") @Positive final Integer size) {
-        log.debug("Get all comments by Event. Params: event id = '{}', from = '{}', size = '{}'. Controller: PubCommentController. Endpoint: /events/{eventId}/comments", eventId, from, size);
+        log.debug("Get all comments by Event. Params: event id = '{}', from = '{}', size = '{}'.", eventId, from, size);
         return service.getAllFromEvent(eventId, from, size);
     }
 }

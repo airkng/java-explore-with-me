@@ -4,7 +4,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.practicum.controllers.priv.PrivEventController;
+import ru.practicum.controllers.priv.PrivateEventController;
+import ru.practicum.controllers.priv.PrivateEventRequestController;
 import ru.practicum.dto.request.ParticipationStatusUpdateRequestDto;
 import ru.practicum.dto.response.ParticipationResponseDto;
 import ru.practicum.dto.response.ParticipationStatusUpdateResponseDto;
@@ -40,7 +41,7 @@ public class EventRequestServiceImpl implements EventRequestService {
 
     /**
      * Возвращает все запросы на события текущего пользователя {@link Participation}
-     * <p>Контроллер: {@link ru.practicum.controllers.priv.PrivEventRequestController}</p>
+     * <p>Контроллер: {@link PrivateEventRequestController}</p>
      * <p><b>Эндпоинт: /users/{userId}/requests</b> </p>
      *
      * @param userId уникальный идентификатор пользователя {@link User}
@@ -66,7 +67,7 @@ public class EventRequestServiceImpl implements EventRequestService {
 
     /**
      * Добавляет в БД сущность {@link Participation Participation.class}. если для события отключена пре-модерация запросов на участие, то запрос должен автоматически перейти в состояние подтвержденного
-     * <p><b>Контроллер: {@link ru.practicum.controllers.priv.PrivEventRequestController PrivEventController.class}</b></p>
+     * <p><b>Контроллер: {@link PrivateEventRequestController PrivateEventController.class}</b></p>
      * <p><b>Эндпоинт: /users/{userId}/requests?eventId=... </b></p>
      *
      * @param userId  уникальный идентификатор {@link User User.class} который хочет забронировать
@@ -110,7 +111,7 @@ public class EventRequestServiceImpl implements EventRequestService {
     /**
      * Отклоняет в БД запрос на участие в событии {@link Event Event.class}
      * Присваивает запросу {@link Participation Participation.class} статус {@link ParticipationState ParticipationState.class} <b>CANCELED</b>
-     * <p><b>Контроллер: {@link ru.practicum.controllers.priv.PrivEventRequestController PrivEventController.class}</b></p>
+     * <p><b>Контроллер: {@link PrivateEventRequestController PrivateEventController.class}</b></p>
      * <p><b>Эндпоинт: /users/{userId}/{requestId}/cancel </b></p>
      *
      * @param userId    уникальный идентификатор пользователя (id) {@link User User.class}
@@ -135,7 +136,7 @@ public class EventRequestServiceImpl implements EventRequestService {
      * Получение информации о запросах(заявках) на участие в событии текущего пользователя.
      * Запрашивает в БД все заявки, полученные от других пользователей на событие по параметрам сущности Event переменных EventId EventInitiatorId
      * <p><b>Эндпоинт: GET /users/{userId}/events/{eventId}/requests</b></p>
-     * <p><b>Контроллер: {@link PrivEventController PrivEventController.class}</b></p>
+     * <p><b>Контроллер: {@link PrivateEventController PrivateEventController.class}</b></p>
      *
      * @param userId  id владельца события Event initiator
      * @param eventId id события

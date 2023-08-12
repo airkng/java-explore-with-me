@@ -23,7 +23,7 @@ public class AdminCommentController {
     @DeleteMapping("/{commentId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteComment(@PathVariable(value = "commentId") final Long commentId) {
-        log.debug("Delete comment with id = {}, by admin. Controller: AdminCommentController. Endpoint: '/admin/comments/{1}' ", commentId);
+        log.debug("Delete comment with id = {}, by admin.", commentId);
         service.deleteByAdmin(commentId);
     }
 
@@ -33,7 +33,7 @@ public class AdminCommentController {
                                                   @RequestParam(value = "from", required = false, defaultValue = "0") @PositiveOrZero final Integer from,
                                                   @RequestParam(value = "size", required = false, defaultValue = "10") @Positive final Integer size
     ) {
-        log.debug("Get all comments with params: from = {}, size = {}, text = {}. Controller: AdminCommentController. Endpoint: '/admin/comments", from, size, text);
+        log.debug("Get all comments with params: from = {}, size = {}, text = {}.", from, size, text);
         return service.searchByText(text, from, size);
     }
 }

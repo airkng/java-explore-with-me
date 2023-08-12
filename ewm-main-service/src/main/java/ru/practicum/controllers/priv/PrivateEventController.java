@@ -25,7 +25,7 @@ import java.util.List;
 @Validated
 @Slf4j
 @RequiredArgsConstructor
-public class PrivEventController {
+public class PrivateEventController {
     private final EventService service;
     private final EventRequestService requestService;
 
@@ -58,7 +58,7 @@ public class PrivEventController {
     @ResponseStatus(HttpStatus.CREATED)
     public EventFullResponseDto addEvent(@PathVariable(name = "userId") final Long userId,
                                          @RequestBody @Valid EventRequestDto eventRequestDto) {
-        log.info("Добавление события в контроллер PrivEventController");
+        log.info("Добавление события в контроллер PrivateEventController");
         return service.add(eventRequestDto, userId);
     }
 
@@ -76,7 +76,7 @@ public class PrivEventController {
     public ParticipationStatusUpdateResponseDto updateEventRequestStatus(@RequestBody final ParticipationStatusUpdateRequestDto requestDto,
                                                                          @PathVariable final Long eventId,
                                                                          @PathVariable final Long userId) {
-        log.info("Изменение статуса(подтверждена/отклонена) на участие в событии текущего пользователя в контроллере PrivEventController");
+        log.info("Изменение статуса(подтверждена/отклонена) на участие в событии текущего пользователя в контроллере PrivateEventController");
         return requestService.updateRequestStatus(eventId, requestDto, userId);
     }
 }

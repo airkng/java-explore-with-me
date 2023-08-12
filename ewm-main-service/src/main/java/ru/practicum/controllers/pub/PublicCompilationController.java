@@ -17,7 +17,7 @@ import java.util.List;
 @Validated
 @Slf4j
 @RequiredArgsConstructor
-public class PubCompilationController {
+public class PublicCompilationController {
     private final CompilationService service;
 
     @GetMapping

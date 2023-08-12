@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.practicum.controllers.priv.PrivEventController;
+import ru.practicum.controllers.priv.PrivateEventController;
 import ru.practicum.dto.EventShortDto;
 import ru.practicum.dto.request.EventRequestDto;
 import ru.practicum.dto.request.EventUpdateDto;
@@ -66,7 +66,7 @@ public class EventServiceImpl implements EventService {
     /**
      * Получение полного события {@link Event Event.class} добавленного текущим пользователем {@link User User.class}
      * <p><b>Эндпоинт: /users/{userId}/events/{eventId}</b></p>
-     * <p><b>Контроллер: {@link PrivEventController PrivEventController.class}</b></p>
+     * <p><b>Контроллер: {@link PrivateEventController PrivateEventController.class}</b></p>
      *
      * @param userId  уникальный идентификатор пользователя
      * @param eventId уникальный идентификатор события
@@ -86,7 +86,7 @@ public class EventServiceImpl implements EventService {
     /**
      * Получение событий {@link Event Event.class} добавленных текущим пользователем {@link User User.class}
      * <p><b>Эндпоинт: /users/{userId}/events</b></p>
-     * <p><b>Контроллер: {@link PrivEventController PrivEventController.class}</b></p>
+     * <p><b>Контроллер: {@link PrivateEventController PrivateEventController.class}</b></p>
      *
      * @param userId id владельца события Event
      * @param from   для постраничной загрузки

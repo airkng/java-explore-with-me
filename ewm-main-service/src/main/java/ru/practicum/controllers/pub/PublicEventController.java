@@ -22,7 +22,7 @@ import java.util.List;
 @Slf4j
 @Validated
 @RequiredArgsConstructor
-public class PubEventController {
+public class PublicEventController {
     private final EventService service;
 
     @GetMapping
@@ -36,7 +36,7 @@ public class PubEventController {
                                                      @RequestParam(defaultValue = "0") @PositiveOrZero final Integer from,
                                                      @RequestParam(defaultValue = "10") @Positive final Integer size,
                                                      final HttpServletRequest request) {
-        log.info("получение опубликованных событий по параметрам PubEventController");
+        log.info("получение опубликованных событий по параметрам PublicEventController");
         var params = PubSearchEventParams.builder()
                 .text(text)
                 .categories(categories)
@@ -54,7 +54,7 @@ public class PubEventController {
 
     @GetMapping("/{id}")
     public EventFullResponseDto getPublishedEventById(@PathVariable final Long id, final HttpServletRequest request) {
-        log.info("Получение опубликованного события в контроллере PubEventController");
+        log.info("Получение опубликованного события в контроллере PublicEventController");
         return service.getPublishedById(id, request);
     }
 
