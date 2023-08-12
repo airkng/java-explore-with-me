@@ -36,7 +36,7 @@ public class CompilationServiceImpl implements CompilationService {
 
     /**
      * Обращается к БД и ищет всевозможные подборки по заданным критериям
-     * Энподинт: /compilations    Контроллер: PubCompilationController
+     * Энподинт: /compilations    Контроллер: PublicCompilationController
      *
      * @param pinned закреплена ли подборка
      * @param from   параметр отвечающий за постраничный вывод информации
@@ -66,7 +66,7 @@ public class CompilationServiceImpl implements CompilationService {
 
     /**
      * Производит поиск в БД подборки событий по id подборки
-     * Эндпоинт: /compilations/{compId}  Контроллер: PubCompilationController
+     * Эндпоинт: /compilations/{compId}  Контроллер: PublicCompilationController
      *
      * @param id айди подборки (Compilation id)
      * @return CompilationResponseDto подборку событий по заданному id

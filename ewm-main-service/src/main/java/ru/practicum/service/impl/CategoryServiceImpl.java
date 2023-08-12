@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import ru.practicum.controllers.pub.PublicCategoryController;
 import ru.practicum.dto.request.CategoryRequestDto;
 import ru.practicum.dto.response.CategoryResponseDto;
 import ru.practicum.exceptions.ConflictException;
@@ -99,14 +100,14 @@ public class CategoryServiceImpl implements CategoryService {
             oldCategory.setName(categoryRequestDto.getName());
             log.info("Сохранение в бд категории {}", oldCategory);
             return mapper.toCategoryResponseDto(repository.save(oldCategory));
-        } catch (DataIntegrityViolationException e) {
+        } catch (Exception e) {
             throw new UniqueViolationException("name of category already exists");
         }
     }
 
     /**
      * Обращается к БД и возвращает список dto {@link Category Category.class} если они существуют
-     * <p>{@link ru.practicum.controllers.pub.PubCategoryController PubCategoryController.class} - <b>основной контроллер</b></b></p>
+     * <p>{@link PublicCategoryController PublicCategoryController.class} - <b>основной контроллер</b></b></p>
      * <h3>GET /categories <b> - эндпоинт </b></h3>
      *
      * @param from параметр постраничного вывода
@@ -129,7 +130,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     /**
      * Обращается к БД по id и возвращает dto {@link Category Category.class} если она существует
-     * <p>{@link ru.practicum.controllers.pub.PubCategoryController PubCategoryController.class} - <b>основной контроллер</b></b></p>
+     * <p>{@link PublicCategoryController PublicCategoryController.class} - <b>основной контроллер</b></b></p>
      * <h3>GET /categories/{categoryId} <b> - эндпоинт </b></h3>
      *
      * @param id уникальный идентификатор(id) категории

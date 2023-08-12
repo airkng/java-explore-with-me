@@ -17,21 +17,21 @@ import java.util.List;
 @RequestMapping("/categories")
 @Validated
 @Slf4j
-public class PubCategoryController {
+public class PublicCategoryController {
     private final CategoryService service;
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<CategoryResponseDto> getAllCategories(@RequestParam(name = "from", defaultValue = "0") @PositiveOrZero final Integer from,
                                                       @RequestParam(name = "size", defaultValue = "10") @Positive final Integer size) {
-        log.info("Получение всех категорий. Контроллер PubCategoryController");
+        log.info("Получение всех категорий. Контроллер PublicCategoryController");
         return service.geAll(from, size);
     }
 
     @GetMapping("/{catId}")
     @ResponseStatus(HttpStatus.OK)
     public CategoryResponseDto getCategoryById(@PathVariable(name = "catId") final Long id) {
-        log.info("Получение конкретной категории. Контроллер PubCategoryController");
+        log.info("Получение конкретной категории. Контроллер PublicCategoryController");
         return service.getById(id);
     }
 }

@@ -15,12 +15,12 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 @Validated
-public class PrivEventRequestController {
+public class PrivateEventRequestController {
     private final EventRequestService service;
 
     @GetMapping
     public List<ParticipationResponseDto> getAllUserRequest(@PathVariable final Long userId) {
-        log.info("Получение заявок на событии конкретного пользователя в контроллере PrivEventController");
+        log.info("Получение заявок на событии конкретного пользователя в контроллере PrivateEventController");
         return service.getAll(userId);
     }
 
@@ -28,14 +28,14 @@ public class PrivEventRequestController {
     @ResponseStatus(HttpStatus.CREATED)
     public ParticipationResponseDto addUserRequest(@PathVariable final Long userId,
                                                    @RequestParam(value = "eventId") final Long eventId) {
-        log.info("Создание заявки на событие от пользователя в контроллере PrivEventRequestController");
+        log.info("Создание заявки на событие от пользователя в контроллере PrivateEventRequestController");
         return service.add(userId, eventId);
     }
 
     @PatchMapping("/{requestId}/cancel")
     public ParticipationResponseDto cancelResuest(@PathVariable final Long userId,
                                                   @PathVariable final Long requestId) {
-        log.info("Отклонение запроса в контроллере PrivEventRequestController");
+        log.info("Отклонение запроса в контроллере PrivateEventRequestController");
         return service.cancel(userId, requestId);
     }
 
